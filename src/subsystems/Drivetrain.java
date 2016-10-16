@@ -5,7 +5,7 @@ import org.usfirst.frc.team1.robot.Opportunity;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
-public class Drivetrain extends Opportunity {
+public class Drivetrain{
 	
 	private DoubleSolenoid shiftingPiston = new DoubleSolenoid(Constants.SHIFTING_PISTON_EXTEND,Constants.SHIFTING_PISTON_RETRACT);
 	private RobotDrive myRobot = new RobotDrive(0,1,2,3);
@@ -13,8 +13,8 @@ public class Drivetrain extends Opportunity {
 	public Drivetrain() {
 	}
 	
-	public void drive(double speed, double heading) {
-		myRobot.arcadeDrive(speed,heading);
+	public void drive(double Throttle, double Turn) {
+		myRobot.arcadeDrive(Throttle,Turn);
 	}
 	
 	public void shiftHigh() {
