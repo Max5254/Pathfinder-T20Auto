@@ -1,10 +1,10 @@
 package org.usfirst.frc.team1.robot;
 
-import org.usfirst.frc.team1.robot.Team5254Libraries.xBox360;
+import edu.wpi.first.wpilibj.Joystick;
 
 public class DriverControls extends Opportunity {
 
-	private xBox360 driver = new xBox360(Constants.DRIVER_JOYSTICK_PORT);
+	private Joystick stick = new Joystick(0);
 
 	public DriverControls() {
 	}
@@ -12,19 +12,22 @@ public class DriverControls extends Opportunity {
 	public void driverControls() {
 		
 		//drivetrain motors
-		drivetrain.drive(driver.getThrottle(), driver.getTurn());
+		drivetrain.drive(stick.getRawAxis(1), stick.getRawAxis(4));
 		
 		//shifting
-		if (driver.getLB() || driver.getRB())
+		if (stick.getRawButton(5)) {
 			drivetrain.shiftHigh();
-		else
+		}
+
+		if (stick.getRawButton(6)) {
 			drivetrain.shiftLow();
+		}
 
 		
 		//catapult
-		if (driver.getRT()) {
+		if (stick.getRawButton(1)) {
 			catapult.longShot();
-		} else if (driver.getLT()) {
+		} else if (stick.getRawButton(2)) {
 			catapult.shortShot();
 		} else {
 			catapult.offShot();
@@ -32,7 +35,7 @@ public class DriverControls extends Opportunity {
 		
 		
 		//intake
-		if(driver.getButtonA()){
+		if(stick.getRawButton(3)){
 			intake.toggleIntake();
 		}
 	}

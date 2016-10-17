@@ -8,35 +8,31 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
-public class Catapult extends Opportunity {
-
+public class Catapult{
+	
 	private Solenoid lowerLeft = new Solenoid(Constants.CATAPULT_LOWER_LEFT);
 	private Solenoid lowerRight = new Solenoid(Constants.CATAPULT_LOWER_RIGHT);
 	private Solenoid top = new Solenoid(Constants.CATAPULT_TOP);
-
-	public Catapult() {
+	
+	public Catapult(){
 	}
-
-	public void longShot() {
-		if (Opportunity.intake.intakeDown()) {
-			lowerLeft.set(true);
-			lowerRight.set(true);
-			top.set(true);
-		}
+	
+	public void longShot() {	
+		lowerLeft.set(true);
+		lowerRight.set(true);
+		top.set(true);
 	}
-
+	
 	public void shortShot() {
-		if (Opportunity.intake.intakeDown()) {
-			lowerLeft.set(true);
-			lowerRight.set(true);
-			top.set(false);
-		}
+		lowerLeft.set(true);
+		lowerRight.set(true);
+		top.set(false);
 	}
-
+	
 	public void offShot() {
 		lowerLeft.set(false);
 		lowerRight.set(false);
 		top.set(false);
 	}
-
+	
 }
