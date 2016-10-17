@@ -9,6 +9,7 @@ public class Intake{
 	
 	private DoubleSolenoid intakePiston = new DoubleSolenoid(Constants.INTAKE_PISTON_EXTEND,Constants.INTAKE_PISTON_RETRACT);
 	Talon intakeMotor = new Talon(Constants.INTAKE_MOTOR);
+	static final Value down = DoubleSolenoid.Value.kForward;
 	
 	public Intake(){
 	}
@@ -28,6 +29,10 @@ public class Intake{
 	
 	public void intakeStop() {
 		intakeMotor.set(0);
+	}
+	
+	public boolean intakeDown(){
+		return (down == intakePiston.get());
 	}
 
 	
