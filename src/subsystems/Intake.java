@@ -15,8 +15,10 @@ public class Intake{
 	}
 	
 	public void toggleIntake() {
-		Value currentValue = intakePiston.get();	
-		intakePiston.set(currentValue);
+		if(DoubleSolenoid.Value.kForward == intakePiston.get())
+				intakePiston.set(DoubleSolenoid.Value.kReverse);
+		else
+				intakePiston.set(DoubleSolenoid.Value.kForward);
 	}
 	
 	public void intakeIn() {

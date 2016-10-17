@@ -18,17 +18,11 @@ public class xBox360 {
 
 	// drive axis'
 	public double getThrottle() {
-		if (invertThrottle)
-			return (-1 * stick.getRawAxis(throttleAxis));
-		else
 			return stick.getRawAxis(throttleAxis);
 	}
 
 	public double getTurn() {
-		if (invertTurn)
-			return (-1 * stick.getRawAxis(turnAxis));
-		else
-			return stick.getRawAxis(turnAxis);
+			return -stick.getRawAxis(turnAxis);
 	}
 
 	// buttons
