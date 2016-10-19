@@ -2,14 +2,22 @@ package org.usfirst.frc.team1.robot.Team5254Libraries;
 
 import edu.wpi.first.wpilibj.Joystick;
 
+/**
+ * Max's epic utility for taking data from xBox360 controllers 
+ * 
+ * @author Max Westwater
+ * @version 1.0
+ */
 public class xBox360 {
 
+	//tolerance required for the trigger to read a boolean true
 	static final double triggerTolerance = 0.25;
+	
+	//Axis' for split stick arcade drive
 	static final int throttleAxis = 1;
 	static final int turnAxis = 4;
-	static final boolean invertThrottle = false;
-	static final boolean invertTurn = true;
 
+	
 	private Joystick stick;
 
 	public xBox360(int jsIndex) {
