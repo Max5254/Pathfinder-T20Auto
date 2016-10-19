@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 /**
  * 
  * @author Max Westwater
- * @version 0.1
+ * @version 0.2
  */
 
 public class PneumaticToggle {
@@ -14,89 +14,71 @@ public class PneumaticToggle {
 	boolean lastValue;
 	DoubleSolenoid doubleSolenoid;
 	Solenoid solenoid;
+	boolean doubleSol;
 
 	// constructor for using double solenoid
-	public PneumaticToggle(DoubleSolenoid doubleSolenoid) {
-		this.doubleSolenoid = doubleSolenoid;
+	public PneumaticToggle(int chanel1, int chanel2) {
+		doubleSolenoid = new DoubleSolenoid(chanel1, chanel2);
+		doubleSol = true;
 	}
 
 	// constructor for using single solenoid
-	public PneumaticToggle(Solenoid solenoid) {
-		this.solenoid = solenoid;
+	public PneumaticToggle(int chanel1) {
+		solenoid = new Solenoid(chanel1);
+		doubleSol = false;
 	}
 
 	/**
 	 * 
 	 * @param input
 	 *            boolean input to toggle solenoid
-	 * @param doubleSolenoid
-	 *            the object of the double solenoid you'd like to toggle
 	 */
-	public void DoubleToggle(boolean input) {
+	public void Toggle(boolean input) {
+		if (doubleSol) {
+			if (!lastValue && input && DoubleSolenoid.Value.kForward == doubleSolenoid.get()) {
+				doubleSolenoid.set(DoubleSolenoid.Value.kReverse);
+			}
+			if (!lastValue && input && DoubleSolenoid.Value.kReverse == doubleSolenoid.get()) {
+				doubleSolenoid.set(DoubleSolenoid.Value.kForward);
+			}
 
-		if (!lastValue && input && DoubleSolenoid.Value.kForward == doubleSolenoid.get()) {
-			doubleSolenoid.set(DoubleSolenoid.Value.kReverse);
+			lastValue = input;
+		} else {
+			if (!lastValue && input && solenoid.get()) {
+				solenoid.set(true);
+			}
+			if (!lastValue && input && solenoid.get()) {
+				solenoid.set(false);
+			}
+
+			lastValue = input;
+
 		}
-		if (!lastValue && input && DoubleSolenoid.Value.kReverse == doubleSolenoid.get()) {
-			doubleSolenoid.set(DoubleSolenoid.Value.kForward);
-		}
-
-		lastValue = input;
-	}
-
-	/**
-	 * 
-	 * @param input
-	 *            boolean input to toggle solenoid
-	 * @param solenoid
-	 *            the object of the single solenoid you'd like to toggle
-	 */
-	public void SingleToggle(boolean input) {
-
-		if (!lastValue && input && solenoid.get()) {
-			solenoid.set(false);
-		}
-		if (!lastValue && input && !solenoid.get()) {
-			solenoid.set(true);
-		}
-
-		lastValue = input;
 	}
 
 	/**
 	 * 
 	 * @param input1
-	 *            Button to set double solenoid to Forward
+	 *            Button to set solenoid to true
 	 * @param input2
-	 *            Button to set double solenoid to Reverse
+	 *            Button to set solenoid to false
 	 */
-	public void DoubleToggle(boolean input1, boolean input2) {
-
-		if (input1) {
-			doubleSolenoid.set(DoubleSolenoid.Value.kForward);
+	public void Toggle(boolean input1, boolean input2) {
+		if (doubleSol) {
+			if (input1) {
+				doubleSolenoid.set(DoubleSolenoid.Value.kForward);
+			}
+			if (input2) {
+				doubleSolenoid.set(DoubleSolenoid.Value.kReverse);
+			}
+		} else {
+			if (input1) {
+				solenoid.set(true);
+			}
+			if (input2) {
+				solenoid.set(false);
+			}
 		}
-		if (input2) {
-			doubleSolenoid.set(DoubleSolenoid.Value.kReverse);
-		}
-
-	}
-
-	/**
-	 * 
-	 * @param input1
-	 *            Button to set single solenoid to true
-	 * @param input2
-	 *            Button to set single solenoid to false
-	 */
-	public void SingleToggle(boolean input1, boolean input2) {
-
-		if (input1) {
-			solenoid.set(true);
-		}
-		if (input2) {
-			solenoid.set(false);
-		}
-
 	}
 
 }

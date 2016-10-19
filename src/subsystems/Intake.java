@@ -9,10 +9,8 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class Intake{
 	
-	//Opens a double solenoid for intake
-	private DoubleSolenoid intakePiston = new DoubleSolenoid(Constants.INTAKE_PISTON_EXTEND,Constants.INTAKE_PISTON_RETRACT);
 	//creates a toggler object for intake 
-	private PneumaticToggle intakeToggle = new PneumaticToggle(intakePiston);
+	private PneumaticToggle intakeToggle = new PneumaticToggle(Constants.INTAKE_PISTON_EXTEND,Constants.INTAKE_PISTON_RETRACT);
 	
 	//Opens a talon motor controller for intake
 	Talon intakeMotor = new Talon(Constants.INTAKE_MOTOR);
@@ -25,7 +23,7 @@ public class Intake{
 	
 	//toggles intake up or down with button press of input
 	public void toggleIntake(boolean input) {
-		intakeToggle.DoubleToggle(input);
+		intakeToggle.Toggle(input);
 	}
 
 	//sets intake motor to full speed in
