@@ -19,6 +19,7 @@ public class PneumaticToggle {
 	// constructor for using double solenoid
 	public PneumaticToggle(int chanel1, int chanel2) {
 		doubleSolenoid = new DoubleSolenoid(chanel1, chanel2);
+		doubleSolenoid.set(DoubleSolenoid.Value.kReverse);
 		doubleSol = true;
 	}
 

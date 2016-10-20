@@ -2,6 +2,8 @@ package org.usfirst.frc.team1.robot;
 
 public class Constants {
 
+	//Relays
+	public static final int FLASHLIGHT_PORT = 0;
 	// PWM's
 	public static final int INTAKE_MOTOR = 4;
 

@@ -2,6 +2,7 @@ package org.usfirst.frc.team1.robot;
 
 import subsystems.Catapult;
 import subsystems.Drivetrain;
+import subsystems.Flashlight;
 import subsystems.Intake;
 
 public class Opportunity {
@@ -14,6 +15,7 @@ public class Opportunity {
 	protected static Drivetrain drivetrain = new Drivetrain(); // Done
 	protected static Intake intake = new Intake(); // Done
 	protected static Catapult catapult = new Catapult(); // Done
+	protected static Flashlight flashlight = new Flashlight(); //Done
 
 	// Human Controls
 	protected static DriverControls driver = new DriverControls(); // Done
