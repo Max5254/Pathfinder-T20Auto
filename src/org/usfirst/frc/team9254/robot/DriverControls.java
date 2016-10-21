@@ -1,6 +1,6 @@
-package org.usfirst.frc.team1.robot;
+package org.usfirst.frc.team9254.robot;
 
-import org.usfirst.frc.team1.robot.Team5254Libraries.xBox360;
+import org.usfirst.frc.team9254.robot.Team5254Libraries.xBox360;
 
 public class DriverControls extends Opportunity {
 
@@ -25,9 +25,9 @@ public class DriverControls extends Opportunity {
 		// shifting
 		// Default to low gear, if Right or Left Bumper is hit shift high
 		if (driver.getLB() || driver.getRB())
-			drivetrain.shiftHigh();
-		else
 			drivetrain.shiftLow();
+		else
+			drivetrain.shiftHigh();
 
 		// catapult
 		// Right Trigger does long shot, Left Trigger does short shot
@@ -41,14 +41,14 @@ public class DriverControls extends Opportunity {
 
 		// intake
 		// Y button toggles intake to either up or down
-		intake.toggleIntake(driver.getButtonY());
+		intake.toggleIntake(driver.getButtonA());
 
 		// Changes the wheel direction
-		if (driver.getButtonA()) // button A = intake in
+		if (driver.getButtonB()) // button A = intake in
 			intake.intakeIn();
-		if (driver.getButtonB()) // button B = intake off
+		if (driver.getButtonX()) // button B = intake off
 			intake.intakeOff();
-		if (driver.getButtonX()) // button C = intake out
+		if (driver.getButtonY()) // button C = intake out
 			intake.intakeOut();
 
 	}

@@ -1,14 +1,14 @@
 package subsystems;
 
-import org.usfirst.frc.team1.robot.Constants;
-import org.usfirst.frc.team1.robot.Opportunity;
+import org.usfirst.frc.team9254.robot.Constants;
+import org.usfirst.frc.team9254.robot.Opportunity;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class Drivetrain{
 	
 	private DoubleSolenoid shiftingPiston = new DoubleSolenoid(Constants.SHIFTING_PISTON_EXTEND,Constants.SHIFTING_PISTON_RETRACT); 
-	private RobotDrive myRobot = new RobotDrive(0,1,2,3); //Front Left, Rear Left, Front Right, Rear Right
+	private RobotDrive myRobot = new RobotDrive(2, 3, 0, 1); //Front Left, Rear Left, Front Right, Rear Right
 	
 	public Drivetrain() {
 	}

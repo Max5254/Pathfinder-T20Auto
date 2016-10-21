@@ -1,6 +1,6 @@
 package subsystems;
 
-import org.usfirst.frc.team1.robot.Constants;
+import org.usfirst.frc.team9254.robot.Constants;
 import edu.wpi.first.wpilibj.Relay;
 
 /** RELAY Options-
@@ -16,7 +16,7 @@ public class Flashlight {
 
 	//Default flashlight to off
 	public Flashlight() {
-		flashlight.set(Relay.Value.kReverse);
+		flashlight.set(Relay.Value.kOff);
 	}
 
 	// turn light on
@@ -26,7 +26,7 @@ public class Flashlight {
 
 	// turn light off
 	public void lightOff() {
-		flashlight.set(Relay.Value.kReverse);
+		flashlight.set(Relay.Value.kOff);
 	}
 
 }

@@ -1,12 +1,9 @@
 package subsystems;
 
-import org.usfirst.frc.team1.robot.Constants;
-import org.usfirst.frc.team1.robot.Opportunity;
-import edu.wpi.first.wpilibj.RobotDrive;
+import org.usfirst.frc.team9254.robot.Constants;
+import org.usfirst.frc.team9254.robot.Opportunity;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class Catapult extends Opportunity {
 
@@ -33,7 +30,7 @@ public class Catapult extends Opportunity {
 	public void shortShot() {
 		if (Opportunity.intake.intakeDown()) {
 			lowerLeft.set(true);
-			lowerRight.set(true);
+			lowerRight.set(false);
 			top.set(DoubleSolenoid.Value.kReverse);
 		}
 	}
