@@ -1,4 +1,4 @@
-package org.usfirst.frc.team9254.robot;
+package org.usfirst.frc.team6254.robot;
 
 import subsystems.Catapult;
 import subsystems.Drivetrain;
@@ -19,4 +19,5 @@ public class Opportunity {
 
 	// Human Controls
 	protected static DriverControls driver = new DriverControls(); // Done
+	protected static OperatorControls operator = new OperatorControls(); // Done
 }

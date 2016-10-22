@@ -1,6 +1,6 @@
-package org.usfirst.frc.team9254.robot;
+package org.usfirst.frc.team6254.robot;
 
-import org.usfirst.frc.team9254.robot.Team5254Libraries.xBox360;
+import org.usfirst.frc.team6254.robot.Team5254Libraries.xBox360;
 
 public class DriverControls extends Opportunity {
 
@@ -14,7 +14,7 @@ public class DriverControls extends Opportunity {
 
 		// drivetrain motors
 		// Split stick arcade drive
-		if (driver.getRightStickClick()) {
+		if (driver.getRightStickClick() || driver.getBack()) {
 			drivetrain.drive(driver.getThrottle(), 0.5 * driver.getTurn()); // slow turn
 			flashlight.lightOn();
 		} else {
@@ -38,18 +38,6 @@ public class DriverControls extends Opportunity {
 		} else {
 			catapult.noShot();
 		}
-
-		// intake
-		// Y button toggles intake to either up or down
-		intake.toggleIntake(driver.getButtonA());
-
-		// Changes the wheel direction
-		if (driver.getButtonB()) // button A = intake in
-			intake.intakeIn();
-		if (driver.getButtonX()) // button B = intake off
-			intake.intakeOff();
-		if (driver.getButtonY()) // button C = intake out
-			intake.intakeOut();
 
 	}
 }

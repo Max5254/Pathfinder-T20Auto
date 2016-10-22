@@ -1,7 +1,7 @@
 package subsystems;
 
-import org.usfirst.frc.team9254.robot.Constants;
-import org.usfirst.frc.team9254.robot.Team5254Libraries.PneumaticToggle;
+import org.usfirst.frc.team6254.robot.Constants;
+import org.usfirst.frc.team6254.robot.Team5254Libraries.PneumaticToggle;
 
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -10,7 +10,8 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 public class Intake{
 	
 	//creates a toggler object for intake 
-	private PneumaticToggle intakeToggle = new PneumaticToggle(Constants.INTAKE_PISTON_EXTEND,Constants.INTAKE_PISTON_RETRACT);
+	DoubleSolenoid doubleSolenoid = new DoubleSolenoid(Constants.INTAKE_PISTON_EXTEND,Constants.INTAKE_PISTON_RETRACT);
+	private PneumaticToggle intakeToggle = new PneumaticToggle(doubleSolenoid);
 	
 	//Opens a talon motor controller for intake
 	Talon intakeMotor = new Talon(Constants.INTAKE_MOTOR);
@@ -22,8 +23,8 @@ public class Intake{
 	}
 	
 	//toggles intake up or down with button press of input
-	public void toggleIntake(boolean input) {
-		intakeToggle.Toggle(input);
+	public void toggleIntake(boolean input1, boolean input2) {
+		intakeToggle.DoubleToggle(input1, input2);
 	}
 
 	//sets intake motor to full speed in
@@ -43,9 +44,8 @@ public class Intake{
 	
 	//returns if the intake is currently down (used for catauplt) 
 	public boolean intakeDown(){
-		//return (down == intakePiston.get());
-		//TODO: Change this to actually work
-		return true;
+		return (down == doubleSolenoid.get());
+
 	}
 
 	

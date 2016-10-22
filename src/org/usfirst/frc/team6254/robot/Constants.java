@@ -1,4 +1,4 @@
-package org.usfirst.frc.team9254.robot;
+package org.usfirst.frc.team6254.robot;
 
 public class Constants {
 
@@ -23,4 +23,6 @@ public class Constants {
 
 	// Joysticks
 	public static final int DRIVER_JOYSTICK_PORT = 0;
+	public static final int OPERATOR_JOYSTICK_PORT = 1;
+
 }
