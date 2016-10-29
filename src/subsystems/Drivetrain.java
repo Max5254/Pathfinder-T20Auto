@@ -1,7 +1,6 @@
 package subsystems;
 
-import org.usfirst.frc.team6254.robot.Constants;
-import org.usfirst.frc.team6254.robot.Opportunity;
+import org.usfirst.frc.team5255.robot.Constants;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 

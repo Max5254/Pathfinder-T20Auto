@@ -1,6 +1,6 @@
-package org.usfirst.frc.team6254.robot;
+package org.usfirst.frc.team5255.robot;
 
-import org.usfirst.frc.team6254.robot.Team5254Libraries.xBox360;
+import org.usfirst.frc.team5255.robot.Team5254Libraries.xBox360;
 
 public class DriverControls extends Opportunity {
 
