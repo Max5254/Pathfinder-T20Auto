@@ -10,6 +10,7 @@ public class Opportunity {
 	public Opportunity() {
 
 	}
+	
 
 	// Subsystems
 	protected static Drivetrain drivetrain = new Drivetrain(); // Done

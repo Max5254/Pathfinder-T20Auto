@@ -2,10 +2,16 @@ package org.usfirst.frc.team5255.robot;
 
 import org.usfirst.frc.team5255.robot.Team5254Libraries.xBox360;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class DriverControls extends Opportunity {
 
 	// Opens a new xBox360 controller
 	private xBox360 driver = new xBox360(Constants.DRIVER_JOYSTICK_PORT);
+	
+	boolean lastButton = false;
+	int numLong = 0;
+	int numShort = 0;
 
 	public DriverControls() {
 	}
@@ -38,6 +44,21 @@ public class DriverControls extends Opportunity {
 		} else {
 			catapult.noShot();
 		}
+		
+		
+		//Stupid code to report how many shots we take in a match 
+		if (driver.getRT() && !lastButton){
+			numLong++;
+		}
+		if (driver.getLT() && !lastButton){
+			numShort++;
+		}
+		
+		lastButton = driver.getRT() || driver.getLT();
+		
+		SmartDashboard.putNumber("shortShot", numShort);
+		SmartDashboard.putNumber("longShot", numLong);
+
 
 	}
 }
