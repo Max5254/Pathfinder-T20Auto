@@ -9,6 +9,7 @@ public class DriverControls extends Opportunity {
 	// Opens a new xBox360 controller
 	private xBox360 driver = new xBox360(Constants.DRIVER_JOYSTICK_PORT);
 	
+	//Variables for publishing shot numbers to dashboard 
 	boolean lastButton = false;
 	int numLong = 0;
 	int numShort = 0;
@@ -46,16 +47,17 @@ public class DriverControls extends Opportunity {
 		}
 		
 		
-		//Stupid code to report how many shots we take in a match 
-		if (driver.getRT() && !lastButton){
+		//Code to report how many shots we take in a match 
+		if (driver.getRT() && !lastButton){ //Each time button is hit increment numLong
 			numLong++;
 		}
-		if (driver.getLT() && !lastButton){
+		if (driver.getLT() && !lastButton){ //Each time button is hit increment numShort
 			numShort++;
 		}
 		
-		lastButton = driver.getRT() || driver.getLT();
+		lastButton = driver.getRT() || driver.getLT(); 
 		
+		//Publish values to dashboard
 		SmartDashboard.putNumber("shortShot", numShort);
 		SmartDashboard.putNumber("longShot", numLong);
 

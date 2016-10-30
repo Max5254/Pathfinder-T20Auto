@@ -14,15 +14,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 	
-	
+	//Variables for auto modes
 	int autoMode;
 	private Timer driveTimer = new Timer();
 
-	double lowBarTime = 5;
-	double lowBarSpeed = -0.5;
+	//TODO: find best values for these
+	double lowBarTime = 5; //Time to drive for low bar (Seconds)
+	double lowBarSpeed = -0.5; //Speed to drive (negative = away from intake)
 	
-	double bumpTime = 3;
-	double bumpSpeed = -0.75;
+	double bumpTime = 3; //Time to drive for bump (Seconds)
+	double bumpSpeed = -0.75; //Speed to drive (negative = away from intake)
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -35,7 +36,8 @@ public class Robot extends IterativeRobot {
 	 * This function is run once each time the robot enters autonomous mode
 	 */
 	public void autonomousInit() {
-		autoMode = (int) SmartDashboard.getNumber("autoSelection", 0);
+		//Read value for selection of auto mode from dashboard 
+		autoMode = (int) SmartDashboard.getNumber("autoSelection", 0); //Default value is 0 (Do Nothing)
 	}
 
 	/**
@@ -48,7 +50,8 @@ public class Robot extends IterativeRobot {
 		driveTimer.start();
 		
 		switch (autoMode) {
-		case 1: // Put bump auto code here
+		case 1: //Bump
+			
 			if (driveTimer.get() < bumpTime) {
 				Opportunity.drivetrain.drive(bumpSpeed , 0);
 			} else if (driveTimer.get() > bumpTime) {
@@ -56,9 +59,10 @@ public class Robot extends IterativeRobot {
 			}
 			break;
 		
-		case 2: // Put low bar auto code here
+		case 2: //Low Bar
+			
 			//Put intake down
-			//TODO: Does this work? 
+			//TODO: Is this backwards? 
 			Opportunity.intake.toggleIntake(false, true); 
 			
 			//Drive
@@ -68,11 +72,12 @@ public class Robot extends IterativeRobot {
 				Opportunity.drivetrain.drive(0, 0);
 			}
 			//Put intake up
-			Opportunity.intake.toggleIntake(false, true);
+			Opportunity.intake.toggleIntake(true, false);
 			break;
 		
 		case 0:
-		default: // Put default (Do Nothing) auto code here
+		default: //Do Nothing
+			
 			Opportunity.drivetrain.drive(0, 0);
 			break;
 
