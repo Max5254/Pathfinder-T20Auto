@@ -14,5 +14,6 @@ Robot Code is written in Java but dashboard is done in LabVIEW.
 ####How to run dashboard with Driver Station 
 
 1. Copy contents of **"Dashboard->builds"** to your computers dashboard folder to replace the default dashboard
-  - Probably C:\Program Files (x86)\FRC Dashboard
-2. Make sure the driver station Dashboard Type is set to "Default"
+  - Probably located at C:\Program Files (x86)\FRC Dashboard
+2. Launch the driver station and the dashboard should launch automatically if it's in the right location  
+ - If not, make sure the driver station Dashboard Type is set to "Default" under the gear icon in the Driver Station

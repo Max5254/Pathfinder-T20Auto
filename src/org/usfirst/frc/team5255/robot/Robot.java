@@ -18,7 +18,7 @@ public class Robot extends IterativeRobot {
 	int autoMode;
 	private Timer driveTimer = new Timer();
 
-	//TODO: find best values for these
+	//TODO: Tune these auto values
 	double lowBarTime = 5; //Time to drive for low bar (Seconds)
 	double lowBarSpeed = -0.5; //Speed to drive (negative = away from intake)
 	
@@ -38,6 +38,13 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		//Read value for selection of auto mode from dashboard 
 		autoMode = (int) SmartDashboard.getNumber("autoSelection", 0); //Default value is 0 (Do Nothing)
+		
+		//TODO: Test autos with hardcoded values (Comment out line above and uncoment hardcoded value) 
+		// 0 = Do Nothing
+		// 1 = Bump
+		// 2 = Low Bar
+		
+		//autoMode = 0;
 	}
 
 	/**
@@ -67,7 +74,7 @@ public class Robot extends IterativeRobot {
 			
 			//Drive
 			if (driveTimer.get() < lowBarTime) {
-				Opportunity.drivetrain.drive(lowBarTime , 0);
+				Opportunity.drivetrain.drive(lowBarSpeed , 0);
 			} else if (driveTimer.get() > lowBarTime) {
 				Opportunity.drivetrain.drive(0, 0);
 			}

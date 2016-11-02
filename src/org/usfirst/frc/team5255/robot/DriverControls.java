@@ -48,6 +48,8 @@ public class DriverControls extends Opportunity {
 		
 		
 		//Code to report how many shots we take in a match 
+		//Increments a variable for each shot each time button is hit and sends data to dashboard
+		
 		if (driver.getRT() && !lastButton){ //Each time button is hit increment numLong
 			numLong++;
 		}
