@@ -13,79 +13,77 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	
-	//Variables for auto modes
+	// Variables for auto modes
 	int autoMode;
 	private Timer driveTimer = new Timer();
 
-	//TODO: Tune these auto values
-	double lowBarTime = 5; //Time to drive for low bar (Seconds)
-	double lowBarSpeed = -0.5; //Speed to drive (negative = away from intake)
-	
-	double bumpTime = 3; //Time to drive for bump (Seconds)
-	double bumpSpeed = -0.75; //Speed to drive (negative = away from intake)
+	// TODO: find best values for these
+	double lowBarTime = 5; // Time to drive for low bar (Seconds)
+	double lowBarSpeed = -0.5; // Speed to drive (negative = away from intake)
+	double bumpTime = 10; // Time to drive for bump (Seconds)
+	double bumpSpeed = -0.75; // Speed to drive (negative = away from intake)
 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
+		System.out.println("Init");
 	}
 
 	/**
 	 * This function is run once each time the robot enters autonomous mode
 	 */
 	public void autonomousInit() {
-		//Read value for selection of auto mode from dashboard 
-		autoMode = (int) SmartDashboard.getNumber("autoSelection", 0); //Default value is 0 (Do Nothing)
-		
-		//TODO: Test autos with hardcoded values (Comment out line above and uncoment hardcoded value) 
-		// 0 = Do Nothing
-		// 1 = Bump
-		// 2 = Low Bar
-		
-		//autoMode = 0;
+		System.out.println("AutoInit");
+		// Read value for selection of auto mode from dashboard
+		autoMode = (int) SmartDashboard.getNumber("autoSelection", 0); // Default value is 0 (Do Nothing)
+									
+		// rest timer
+		driveTimer.reset();
+		// Start timer
+		driveTimer.start();
+		//// Shift into low gear
+		Opportunity.drivetrain.shiftLow();
 	}
 
 	/**
 	 * This function is called periodically during autonomous
 	 */
 	public void autonomousPeriodic() {
-		//Shift into low gear
-		Opportunity.drivetrain.shiftLow();
-		//Start timer
-		driveTimer.start();
-		
+		//System.out.println("AutoPer");
+		//autoMode = 1;  //TODO: Do you need to hard code this? 
 		switch (autoMode) {
-		case 1: //Bump
-			
+		case 1: // Bump
+			//System.out.println(driveTimer.get());
 			if (driveTimer.get() < bumpTime) {
-				Opportunity.drivetrain.drive(bumpSpeed , 0);
+				Opportunity.drivetrain.drive(bumpSpeed, 0);
 			} else if (driveTimer.get() > bumpTime) {
 				Opportunity.drivetrain.drive(0, 0);
+				// stop timer
+				driveTimer.stop();
 			}
 			break;
-		
-		case 2: //Low Bar
-			
-			//Put intake down
-			//TODO: Is this backwards? 
-			Opportunity.intake.toggleIntake(false, true); 
-			
-			//Drive
+		case 2: // Low Bar
+			// Put intake down
+			// TODO: Is this backwards?
+			Opportunity.intake.toggleIntake(false, true);
+			// Drive
 			if (driveTimer.get() < lowBarTime) {
-				Opportunity.drivetrain.drive(lowBarSpeed , 0);
+				Opportunity.drivetrain.drive(lowBarSpeed, 0);
 			} else if (driveTimer.get() > lowBarTime) {
 				Opportunity.drivetrain.drive(0, 0);
+				// stop timer
+				driveTimer.stop();
 			}
-			//Put intake up
+			// Put intake up
 			Opportunity.intake.toggleIntake(true, false);
 			break;
-		
 		case 0:
-		default: //Do Nothing
-			
+		default: // Do Nothing
 			Opportunity.drivetrain.drive(0, 0);
+			// stop timer
+			driveTimer.stop();
 			break;
 
 		}
@@ -104,6 +102,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Opportunity.driver.driverControls();
 		Opportunity.operator.OperatorControls();
+		//System.out.println("tele");
 	}
 
 	private void delay(double d) {
