@@ -29,12 +29,12 @@ public class Intake{
 
 	//sets intake motor to full speed in
 	public void intakeIn() {
-		intakeMotor.set(1);
+		intakeMotor.set(-1);
 	}
 	
 	//sets intake motor to full speed out
 	public void intakeOut() {
-		intakeMotor.set(-1);
+		intakeMotor.set(1);
 	}
 	
 	//turns intake motor off 

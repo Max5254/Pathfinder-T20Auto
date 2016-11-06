@@ -19,11 +19,11 @@ public class Robot extends IterativeRobot {
 
 	// TODO: find best values for these
 	double lowBarTime = 5; // Time to drive for low bar (Seconds)
-	double lowBarSpeed = -0.5; // Speed to drive (negative = away from intake)
-	double bumpTime = 10; // Time to drive for bump (Seconds)
-	double bumpSpeed = -0.75; // Speed to drive (negative = away from intake)
+	double lowBarSpeed = 0.5; // Speed to drive (negative = away from intake)
+	double bumpTime = 1.75; // Time to drive for bump (Seconds)
+	double bumpSpeed = 1; // Speed to drive (negative = away from intake)
 
-	/**
+	/**S
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
@@ -37,7 +37,6 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		System.out.println("AutoInit");
 		// Read value for selection of auto mode from dashboard
-		autoMode = (int) SmartDashboard.getNumber("autoSelection", 0); // Default value is 0 (Do Nothing)
 									
 		// rest timer
 		driveTimer.reset();
@@ -51,8 +50,13 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during autonomous
 	 */
 	public void autonomousPeriodic() {
-		//System.out.println("AutoPer");
-		//autoMode = 1;  //TODO: Do you need to hard code this? 
+		//autoMode = (int) SmartDashboard.getNumber("autoSelection"); 
+		
+		autoMode = 1;
+		
+		// 0 : Do Nothing
+		// 1 : Bump
+		// 2 : Low Bar
 		switch (autoMode) {
 		case 1: // Bump
 			//System.out.println(driveTimer.get());
