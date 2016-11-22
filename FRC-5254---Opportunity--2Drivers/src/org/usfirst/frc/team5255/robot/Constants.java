@@ -17,7 +17,7 @@ public class Constants {
 	public static final int SHIFTING_PISTON_RETRACT = 5;
 
 	// Sensor's
-	public static final int CATAPULT_LIMIT_SWITCH = 0;
+
 
 	// Joysticks
 	public static final int DRIVER_JOYSTICK_PORT = 0;

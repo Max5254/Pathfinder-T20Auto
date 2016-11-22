@@ -1,18 +1,18 @@
-package org.usfirst.frc.team5255.robot;
+package org.usfirst.frc.team5254.robot;
 
-import org.usfirst.frc.team5255.robot.Team5254Libraries.xBox360;
+import org.usfirst.frc.team5254.robot.Team5254Libraries.xBox360;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class DriverControls extends Opportunity {
+public class DriverControls extends Pathfinder {
 
 	// Opens a new xBox360 controller
 	private xBox360 driver = new xBox360(Constants.DRIVER_JOYSTICK_PORT);
 	
 	//Variables for publishing shot numbers to dashboard 
 	boolean lastButton = false;
-	int numLong = 0;
-	int numShort = 0;
+	int numHigh = 0;
+	int numLow = 0;
 
 	public DriverControls() {
 	}
@@ -23,10 +23,8 @@ public class DriverControls extends Opportunity {
 		// Split stick arcade drive
 		if (driver.getRightStickClick() || driver.getBack()) {
 			drivetrain.drive(driver.getThrottle(), 0.5 * driver.getTurn()); // slow turn
-			flashlight.lightOn();
 		} else {
 			drivetrain.drive(driver.getThrottle(), driver.getTurn());
-			flashlight.lightOff();
 		}
 
 		// shifting
@@ -36,32 +34,30 @@ public class DriverControls extends Opportunity {
 		else
 			drivetrain.shiftHigh();
 
-		// catapult
-		// Right Trigger does long shot, Left Trigger does short shot
+		
+		// Right Trigger does highGoal, Left Trigger does lowGoal
 		if (driver.getRT()) {
-			catapult.longShot();
+			shooter.highGoal();
 		} else if (driver.getLT()) {
-			catapult.shortShot();
+			shooter.lowGoal();
 		} else {
-			catapult.noShot();
+			shooter.noShot();
 		}
 		
 		
 		//Code to report how many shots we take in a match 
-		//Increments a variable for each shot each time button is hit and sends data to dashboard
-		
 		if (driver.getRT() && !lastButton){ //Each time button is hit increment numLong
-			numLong++;
+			numHigh++;
 		}
 		if (driver.getLT() && !lastButton){ //Each time button is hit increment numShort
-			numShort++;
+			numLow++;
 		}
 		
 		lastButton = driver.getRT() || driver.getLT(); 
 		
 		//Publish values to dashboard
-		SmartDashboard.putNumber("shortShot", numShort);
-		SmartDashboard.putNumber("longShot", numLong);
+		SmartDashboard.putNumber("lowGoal", numLow);
+		SmartDashboard.putNumber("highGoal", numHigh);
 
 
 	}

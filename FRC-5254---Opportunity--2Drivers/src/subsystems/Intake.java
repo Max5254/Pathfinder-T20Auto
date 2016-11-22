@@ -1,7 +1,7 @@
 package subsystems;
 
-import org.usfirst.frc.team5254.robot.Constants;
-import org.usfirst.frc.team5254.robot.Team5254Libraries.PneumaticToggle;
+import org.usfirst.frc.team5255.robot.Constants;
+import org.usfirst.frc.team5255.robot.Team5254Libraries.PneumaticToggle;
 
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
