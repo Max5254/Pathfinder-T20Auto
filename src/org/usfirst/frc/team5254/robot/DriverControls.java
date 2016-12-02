@@ -13,6 +13,7 @@ public class DriverControls extends Pathfinder {
 	boolean lastButton = false;
 	int numHigh = 0;
 	int numLow = 0;
+	boolean lastValue;
 
 	public DriverControls() {
 	}
@@ -30,9 +31,9 @@ public class DriverControls extends Pathfinder {
 		// shifting
 		// Default to low gear, if Right or Left Bumper is hit shift high
 		if (driver.getLB() || driver.getRB())
-			drivetrain.shiftLow();
-		else
 			drivetrain.shiftHigh();
+		else
+			drivetrain.shiftLow();
 
 		
 		// Right Trigger does highGoal, Left Trigger does lowGoal
@@ -58,7 +59,10 @@ public class DriverControls extends Pathfinder {
 		//Publish values to dashboard
 		SmartDashboard.putNumber("lowGoal", numLow);
 		SmartDashboard.putNumber("highGoal", numHigh);
-
-
+		
+		//tomahawks
+		// A toggles tomahawks up and down
+		tomahawk.toggleTomahawk(driver.getButtonA());
+		
 	}
 }
