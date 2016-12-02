@@ -10,7 +10,7 @@ public class Constants {
 	public static final int INTAKE_PISTON_EXTEND = 3;
 	public static final int INTAKE_PISTON_RETRACT = 4;
 	public static final int TOMAHAWK_PISTON_EXTEND = 1;
-	public static final int TOMAHAWK_PISTION_RETRACT = 2;
+	public static final int TOMAHAWK_PISTON_RETRACT = 2;
 	public static final int SHIFTING_PISTON = 5;
 	public static final int BALL_HOLDER_PISTON = 6;
 	
