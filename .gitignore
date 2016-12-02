@@ -6,3 +6,4 @@
 /.idea/
 *~
 /sysProps.xml
+/build.properties

@@ -1,8 +1,0 @@
-/bin/
-/dist/
-/build/
-*.iml
-*.pyc
-/.idea/
-*~
-/sysProps.xml
