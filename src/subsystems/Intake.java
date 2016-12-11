@@ -10,21 +10,24 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 public class Intake{
 	
 	//creates a toggler object for intake 
-	DoubleSolenoid doubleSolenoid = new DoubleSolenoid(Constants.INTAKE_PISTON_EXTEND,Constants.INTAKE_PISTON_RETRACT);
-	private PneumaticToggle intakeToggle = new PneumaticToggle(doubleSolenoid);
+	DoubleSolenoid doubleSolenoid;
+	private PneumaticToggle intakeToggle;
 	
 	//Opens a talon motor controller for intake
 	Talon intakeMotor = new Talon(Constants.INTAKE_MOTOR);
 	
 	//sets the variable for down to be used in intakeDown()
 	static final Value down = DoubleSolenoid.Value.kForward;
+	static final Value up = DoubleSolenoid.Value.kForward;
 	
 	public Intake(){
+		doubleSolenoid = new DoubleSolenoid(Constants.INTAKE_PISTON_EXTEND,Constants.INTAKE_PISTON_RETRACT);
+		intakeToggle = new PneumaticToggle(doubleSolenoid);
 	}
 	
 	//toggles intake up or down with button press of input
-	public void toggleIntake(boolean input1, boolean input2) {
-		intakeToggle.DoubleToggle(input1, input2);
+	public void toggleIntake(boolean input1) {
+		intakeToggle.DoubleToggle(input1);
 	}
 
 	//sets intake motor to full speed in
@@ -45,8 +48,8 @@ public class Intake{
 	//returns if the intake is currently down (used for catauplt) 
 	public boolean intakeDown(){
 		return (down == doubleSolenoid.get());
-
 	}
-
-	
+	public boolean intakeUp(){
+		return (up == doubleSolenoid.get());
+	}	
 }

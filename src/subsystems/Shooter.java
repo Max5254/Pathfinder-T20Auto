@@ -30,7 +30,7 @@ public class Shooter extends Pathfinder {
 
 	//148 shot: Open holder then fire shooter
 	public void lowGoal() {
-		if (Pathfinder.intake.intakeDown()) {
+		if (Pathfinder.intake.intakeUp()) {
 			holder.set(false);
 			try {
 				Thread.sleep(1000);

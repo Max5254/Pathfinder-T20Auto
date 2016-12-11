@@ -69,7 +69,7 @@ public class Robot extends IterativeRobot {
 			
 			//Put intake down
 			//TODO: Is this backwards? 
-			Pathfinder.intake.toggleIntake(false, true); 
+			Pathfinder.intake.toggleIntake(true); 
 			
 			//Drive
 			if (driveTimer.get() < lowBarTime) {
@@ -80,7 +80,7 @@ public class Robot extends IterativeRobot {
 				driveTimer.stop();
 			}
 			//Put intake up
-			Pathfinder.intake.toggleIntake(true, false);
+			Pathfinder.intake.toggleIntake(false);
 			break;
 		
 		case 0:
