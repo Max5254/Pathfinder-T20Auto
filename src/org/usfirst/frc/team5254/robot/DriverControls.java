@@ -55,8 +55,7 @@ public class DriverControls extends Pathfinder {
 		lastButton = driver.getRT() || driver.getLT(); 
 		
 		//Publish values to dashboard
-		SmartDashboard.putNumber("lowGoal", numLow);
-		SmartDashboard.putNumber("highGoal", numHigh);
+		SmartDashboard.putNumber("Goals", numLow + numHigh);
 		
 		//tomahawks
 		// A toggles tomahawks up and down
