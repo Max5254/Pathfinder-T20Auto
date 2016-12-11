@@ -36,11 +36,9 @@ public class DriverControls extends Pathfinder {
 			drivetrain.shiftLow();
 
 		
-		// Right Trigger does highGoal, Left Trigger does lowGoal
-		if (driver.getRT()) {
-			shooter.highGoal();
-		} else if (driver.getLT()) {
-			shooter.lowGoal();
+		// Right Trigger and Left Trigger shoot
+		if (driver.getRT() || driver.getLT()) {
+			shooter.shooterExtend();
 		} else {
 			shooter.noShot();
 		}
