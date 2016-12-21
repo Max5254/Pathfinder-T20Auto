@@ -98,18 +98,20 @@ public class Robot extends IterativeRobot {
 	 * mode
 	 */
 	public void teleopInit() {
+		System.out.println("teleopInit");
 	}
 
 	/**
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
+		//System.out.println("teleopPeriodic");
 		Pathfinder.driver.driverControls();
 		Pathfinder.operator.operatorControls();
-		System.out.println("tele");
+		//System.out.println("tele");
 	}
 
-	private void delay(double d) {
+	public void delay(double d) {
 		// TODO Auto-generated method stub
 
 	}

@@ -5,6 +5,7 @@ public class Constants {
 	//PWM's
 	public static final int INTAKE_MOTOR = 5;
 	
+	
 	//Solenoid's
 	public static final int SHOOTER = 0;
 	public static final int INTAKE_PISTON_EXTEND = 3;
@@ -15,19 +16,19 @@ public class Constants {
 	public static final int BALL_HOLDER_PISTON = 6;
 	
 	//Sensor's
+	
 	public static final int DRIVE_ENCODER_LEFT1 = 0;
 	public static final int DRIVE_ENCODER_RIGHT1 = 1;
 	public static final int DRIVE_ENCODER_LEFT2 = 2;
 	public static final int DRIVE_ENCODER_RIGHT2 = 3;
 	public static final int RIGHT_BALL_SENSOR = 4;
 	public static final int LEFT_BALL_SENSOR  = 5;
-
 	//Joysticks
 	public static final int DRIVER_JOYSTICK_PORT = 0;
 	public static final int OPERATOR_JOYSTICK_PORT = 1;
 	
-	//CAN
+	//Can
 	public static final int LEFT_SHOOTER = 2;
-	public static final int RIGHT_SHOOTER = 3;
+	public static final int RIGHT_SHOOTER = 1;
 
 }

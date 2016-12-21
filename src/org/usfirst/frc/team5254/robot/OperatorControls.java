@@ -17,24 +17,30 @@ public class OperatorControls extends Pathfinder {
 		intake.toggleIntake(operator.getStart());
 
 		// Changes the wheel direction
-		if (operator.getButtonA()) // button A = intake in
+		if (operator.getButtonA()) { // button A = intake in
 			intake.intakeIn();
 			shooter.flywheelIn();
-		if (operator.getButtonB()) // button B = intake off
+		}
+		if (operator.getButtonB()) { // button B = intake off
 			intake.intakeOff();
 			shooter.flywheelStop();
-		if (operator.getButtonX()) // button C = intake out
+		}
+		if (operator.getButtonX()) { // button C = intake out
 			intake.intakeOut();
 			shooter.flywheelOut();
-		if (operator.getLB())      // button LB = intake out
+		}
+		if (operator.getLB())       { // button LB = intake out
 			intake.intakeOut();
 			shooter.flywheelOut();
-		if (operator.getRB())      // button RB = intake in
+		}
+		if (operator.getRB())        { // button RB = intake in
 			intake.intakeIn();
 			shooter.flywheelIn();
-		if (operator.getBack())    // button Back = holder open
-			shooter.holderClose();
-		if (!operator.getBack())   // button not Back = holder close
-			shooter.holderOpen();
+		}
+		//if (operator.getBack())    // button Back = holder open
+			//shooter.holderClose();
+		
+		//if (!operator.getBack())   // button not Back = holder close
+			//shooter.holderOpen();
 	}
 }
