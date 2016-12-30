@@ -1,40 +1,156 @@
 package org.usfirst.frc.team5254.robot;
 
 import org.usfirst.frc.team5254.robot.Team5254Libraries.xBox360;
+import org.usfirst.frc.team5254.robot.DriverControls;
+
+import edu.wpi.first.wpilibj.Timer;
+
 
 public class OperatorControls extends Pathfinder {
 
 	// Opens a new xBox360 controller
+	private Timer shotTimer = new Timer();
+	private Timer armTimer = new Timer();
 	private xBox360 operator = new xBox360(Constants.OPERATOR_JOYSTICK_PORT);
-
+	private enum ShooterState {
+		IDLE,
+		INTAKEIN,
+		INTAKEOUT,
+		READYTOSHOOT,
+		SHOOT;
+	} 
+	
+	ShooterState state;
 	public OperatorControls() {
-	}
+		 state = ShooterState.IDLE;
+		shotTimer.start();
 
+	}
+	
+	 
+	
 	public void operatorControls() {
 		
-		// intake
-		// Y button toggles intake to either up or down
-		intake.toggleIntake(operator.getStart());
+		/*if (operator.getBack()) {    // button Back = holder open
+			shooter.holderClose();
+		} else {
+			shooter.holderOpen();
+		}*/
 
-		// Changes the wheel direction
-		if (operator.getButtonA()) // button A = intake in
-			intake.intakeIn();
-			shooter.flywheelIn();
-		if (operator.getButtonB()) // button B = intake off
+
+		//System.out.println(state);
+		intake.toggleIntake(operator.getStart());
+		
+		System.out.println(state);
+		switch (state) { 
+		case IDLE: //Idle
+			armTimer.start();
+			System.out.println(shooter.pdp.getCurrent(10));
+			if (shooter.pdp.getCurrent(10) >= 20 && armTimer.get() >= 0.4) {
+				shooter.armMotor.set(0.0);
+				System.out.println("Over Current");
+			}
+			
 			intake.intakeOff();
 			shooter.flywheelStop();
-		if (operator.getButtonX()) // button C = intake out
-			intake.intakeOut();
-			shooter.flywheelOut();
-		if (operator.getLB())      // button LB = intake out
-			intake.intakeOut();
-			shooter.flywheelOut();
-		if (operator.getRB())      // button RB = intake in
+			shooter.shooterRetract();
+			shooter.holderClose();
+			if (operator.getButtonA()) {
+				state = ShooterState.INTAKEIN;
+			}
+			if (operator.getButtonX()) {
+				state = ShooterState.INTAKEOUT;
+			}
+			if (operator.getButtonY()) {
+				state = ShooterState.READYTOSHOOT;
+				shooter.armMotor.set(-1.0);
+				armTimer.reset();
+			}
+			if (operator.getButtonB()) {
+				System.out.println("Resetting...");
+				state = ShooterState.IDLE;
+				shooter.armMotor.set(1);
+				armTimer.reset();
+			}
+			break;
+		case INTAKEIN:
+			//Arm(Bottom)
 			intake.intakeIn();
 			shooter.flywheelIn();
-		if (operator.getBack())    // button Back = holder open
-			shooter.holderClose();
-		if (!operator.getBack())   // button not Back = holder close
+			shooter.shooterRetract();
 			shooter.holderOpen();
+			if (shooter.leftBallIn() || shooter.rightBallIn()) {
+				state = ShooterState.IDLE;
+			}
+			if (operator.getButtonX()) {
+				state = ShooterState.INTAKEOUT;
+			}
+			if (operator.getButtonB()) {
+				state = ShooterState.IDLE;
+				shooter.armMotor.set(1.0);
+				armTimer.reset();
+			}
+			if (operator.getButtonY()) {
+				state = ShooterState.READYTOSHOOT;
+				shooter.armMotor.set(-1.0);
+				armTimer.reset();
+			}
+			break;
+		case INTAKEOUT:
+			//Arm(Bottom)
+			intake.intakeOut();
+			shooter.flywheelOut(2000);
+			shooter.shooterRetract();
+			shooter.holderClose();
+			if (DriverControls.driver.getRT() || DriverControls.driver.getLT()) {
+				state = ShooterState.SHOOT;
+				shotTimer.reset();
+			}
+			if (operator.getButtonB()) {
+				state = ShooterState.IDLE;
+				shooter.armMotor.set(1.0);
+				armTimer.reset();
+			}
+			if (operator.getButtonA()) {
+				state = ShooterState.INTAKEIN;
+			}
+			if (operator.getButtonY()) {
+				state = ShooterState.READYTOSHOOT;
+				shooter.armMotor.set(-1.0);
+				armTimer.reset();
+			}
+			break;
+		case READYTOSHOOT:
+			System.out.println(shooter.pdp.getCurrent(10));
+			if (shooter.pdp.getCurrent(10) >= 20 && armTimer.get() >= 0.4) {
+				shooter.armMotor.set(0.0);
+			}
+			intake.intakeOff();
+			shooter.flywheelOut(5000);
+			shooter.holderClose();
+			if (DriverControls.driver.getRT() || DriverControls.driver.getLT()) {
+				shooter.holderOpen();
+				shotTimer.reset();
+				state = ShooterState.SHOOT;
+			}
+			if (operator.getButtonB()) {
+				state = ShooterState.IDLE;
+				shooter.armMotor.set(1.0);
+				armTimer.reset();
+			}
+		break;		
+		case SHOOT:
+			shooter.holderOpen();
+			System.out.println(shotTimer.get());
+			if (shotTimer.get() > 0.8) {
+				state = ShooterState.IDLE;
+				shooter.armMotor.set(1.0);
+			} else if (shotTimer.get() > 0.2){
+				shooter.shooterExtend();
+			} else {
+				shooter.shooterRetract();
+			}
+			break;
+		}	
 	}
 }

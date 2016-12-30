@@ -12,9 +12,11 @@ public class Intake{
 	//creates a toggler object for intake 
 	DoubleSolenoid doubleSolenoid;
 	private PneumaticToggle intakeToggle;
-	
+
 	//Opens a talon motor controller for intake
 	Talon intakeMotor = new Talon(Constants.INTAKE_MOTOR);
+	//Button leftBallSensor = new Button(Constants.LEFT_BALL_SENSOR);
+	//Button rightBallSensor = new Button(Constants.RIGHT_BALL_SENSOR);
 	
 	//sets the variable for down to be used in intakeDown()
 	static final Value down = DoubleSolenoid.Value.kForward;

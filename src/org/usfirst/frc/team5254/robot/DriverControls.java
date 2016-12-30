@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriverControls extends Pathfinder {
 
 	// Opens a new xBox360 controller
-	private xBox360 driver = new xBox360(Constants.DRIVER_JOYSTICK_PORT);
+	static xBox360 driver = new xBox360(Constants.DRIVER_JOYSTICK_PORT);
 	
 	//Variables for publishing shot numbers to dashboard 
 	boolean lastButton = false;
@@ -35,15 +35,6 @@ public class DriverControls extends Pathfinder {
 		else
 			drivetrain.shiftLow();
 
-		
-		// Right Trigger and Left Trigger shoot
-		if (driver.getRT() || driver.getLT()) {
-			shooter.shooterExtend();
-		} else {
-			shooter.noShot();
-		}
-		
-		
 		//Code to report how many shots we take in a match 
 		if (driver.getRT() && !lastButton){ //Each time button is hit increment numLong
 			numHigh++;
@@ -61,5 +52,11 @@ public class DriverControls extends Pathfinder {
 		// A toggles tomahawks up and down
 		tomahawk.toggleTomahawk(driver.getButtonA());
 		
+
+		if (shooter.leftBallIn() && shooter.rightBallIn()){
+			shooter.holderOpen();
+		}	else {
+			shooter.holderClose();
+		}
 	}
 }
