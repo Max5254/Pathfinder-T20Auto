@@ -1,5 +1,5 @@
-# FRC 5254 - Opportunity
-###FRC 5254's 2016 offseason robot 
+# FRC 5254 - Pathfinder
+###FRC 5254's 2016 robot 
 
 Robot Code is written in Java but dashboard is done in LabVIEW. 
 
@@ -14,6 +14,7 @@ Robot Code is written in Java but dashboard is done in LabVIEW.
 ####How to run dashboard with Driver Station 
 
 1. Copy contents of **"Dashboard->builds"** to your computers dashboard folder to replace the default dashboard
+  - Make sure the .exe is named "Dashboard.exe"
   - Probably located at C:\Program Files (x86)\FRC Dashboard
 2. Launch the driver station and the dashboard should launch automatically if it's in the right location  
  - If not, make sure the driver station Dashboard Type is set to "Default" under the gear icon in the Driver Station
