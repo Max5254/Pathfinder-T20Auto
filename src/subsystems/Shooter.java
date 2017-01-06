@@ -80,4 +80,13 @@ public class Shooter extends Pathfinder {
 	public void flywheelStop(){
 		flywheelLeft.set(0);
 	}
+	public void shooterArmUp(){
+		armMotor.set(-1.0);
+	}
+	public void shooterArmDown(){
+		armMotor.set(1.0);
+	}
+	public void shooterArmStop(){
+		armMotor.set(0.0);
+	}
 }
