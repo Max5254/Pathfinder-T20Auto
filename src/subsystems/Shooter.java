@@ -39,12 +39,10 @@ public class Shooter extends Pathfinder {
 		
 	}
 	public boolean leftBallIn() {
-		//System.out.printf("leftBallSensor %b%n", leftBallSensor.get());
 		return !leftBallSensor.get();
 		}
 	
 	public boolean rightBallIn() {
-		//System.out.printf("rightBallSensor %b%n", rightBallSensor.get());
 		return !rightBallSensor.get();
 	}
 	//Nothing: don't fire

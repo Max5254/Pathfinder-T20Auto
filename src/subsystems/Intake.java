@@ -15,9 +15,7 @@ public class Intake{
 
 	//Opens a talon motor controller for intake
 	Talon intakeMotor = new Talon(Constants.INTAKE_MOTOR);
-	//Button leftBallSensor = new Button(Constants.LEFT_BALL_SENSOR);
-	//Button rightBallSensor = new Button(Constants.RIGHT_BALL_SENSOR);
-	
+
 	//sets the variable for down to be used in intakeDown()
 	static final Value down = DoubleSolenoid.Value.kForward;
 	static final Value up = DoubleSolenoid.Value.kForward;
@@ -47,7 +45,7 @@ public class Intake{
 		intakeMotor.set(0);
 	}
 	
-	//returns if the intake is currently down (used for catauplt) 
+	//returns if the intake is currently down 
 	public boolean intakeDown(){
 		return (down == doubleSolenoid.get());
 	}
