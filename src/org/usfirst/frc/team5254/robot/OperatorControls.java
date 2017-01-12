@@ -14,10 +14,10 @@ public class OperatorControls extends Pathfinder {
 	 
 	public void operatorControls() {
 		
-		if (operator.getBack()) {    // button Back: holder open
+		if (operator.getBack()) {    // button Back: holder opens
 			shooter.holderClose();
 		} else {
-			shooter.holderOpen();
+			shooter.holderOpen();    // otherwise: holder close
 		}
 
 

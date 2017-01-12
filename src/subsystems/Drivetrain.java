@@ -7,6 +7,7 @@ import org.usfirst.frc.team5254.robot.Constants;
 
 public class Drivetrain{
 	
+	//Solenoid for shifting and ports for the drive motors
 	private Solenoid shiftingPiston = new Solenoid(Constants.SHIFTING_PISTON); 
 	private RobotDrive myRobot = new RobotDrive(2, 3, 0, 1); //Front Left, Rear Left, Front Right, Rear Right
 	
@@ -18,10 +19,12 @@ public class Drivetrain{
 		myRobot.arcadeDrive(Throttle,Turn);
 	}
 	
-	//Button to shift high
+	//Shift to high gear
 	public void shiftHigh() {
 		shiftingPiston.set(true);
 	}	
+	
+	//Shift to low gear
 	public void shiftLow() {
 		shiftingPiston.set(false);
 	}

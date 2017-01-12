@@ -18,11 +18,11 @@ public class Tomahawk{
 		tomahawkToggle = new PneumaticToggle(doubleSolenoid);
 	}
 	
-	public void toggleTomahawk(boolean input1) {
+	public void toggleTomahawk(boolean input1) { //Button Toggle for the tomahawks
 		tomahawkToggle.DoubleToggle(input1);
 	}
 	
-	public boolean tomahawkDown(){
+	public boolean tomahawkDown(){ //Tomahawk is down
 		return (down == doubleSolenoid.get());
 	}
 }

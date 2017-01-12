@@ -49,6 +49,8 @@ public class Intake{
 	public boolean intakeDown(){
 		return (down == doubleSolenoid.get());
 	}
+	
+	//reurns if the intake is currently up
 	public boolean intakeUp(){
 		return (up == doubleSolenoid.get());
 	}	

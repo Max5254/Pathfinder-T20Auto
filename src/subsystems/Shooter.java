@@ -39,53 +39,53 @@ public class Shooter extends Pathfinder {
 		
 		
 	}
-	public boolean leftBallIn() {
+	public boolean leftBallIn() { //Sense when balls are in on the left sensor
 		return !leftBallSensor.get();
 		}
 	
-	public boolean rightBallIn() {
+	public boolean rightBallIn() { //Sense when balls are in on the right sensor
 		return !rightBallSensor.get();
 	}
-	//Nothing: don't fire
-	public void noShot() {
+							
+	public void noShot() { //When we arent't shooting
 		holder.set(false);
 		shooter.set(false);
 		}
-	public void shooterExtend(){
+	public void shooterExtend(){ //Shooter extends
 		shooter.set(true);
 	}
-	public void shooterRetract(){
+	public void shooterRetract(){ //Shooter retracts
 		shooter.set(false);
 	}
-	public void holderOpen(){
+	public void holderOpen(){ //Holders open
 		holder.set(false);
 	}
 	
-	public void holderClose(){
+	public void holderClose(){ //Holders open
 		holder.set(true);
 	}
-	public void flywheelOut(int RPM){
+	public void flywheelOut(int RPM){ //Flywheels out
 		flywheelLeft.changeControlMode(CANTalon.TalonControlMode.Speed);
 		flywheelLeft.configPeakOutputVoltage(0.0f,-12.0f);
 		flywheelLeft.set(-RPM);
 		//System.out.println(RPM + " - " + -flywheelLeft.getEncVelocity());
 		//System.out.println(pdp.getCurrent(2));
 	}
-	public void flywheelIn(){
+	public void flywheelIn(){ //Flywheels in
 		flywheelLeft.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		flywheelLeft.configPeakOutputVoltage(+12.0f,0.0f);
 		flywheelLeft.set(1);
 	}	
-	public void flywheelStop(){
+	public void flywheelStop(){ //Flywheels stop
 		flywheelLeft.set(0);
 	}
-	public void shooterArmUp(){
+	public void shooterArmUp(){ //Shooter arm starts moving up
 		armMotor.set(-1.0);
 	}
-	public void shooterArmDown(){
+	public void shooterArmDown(){ //Shooter arm starts moving down
 		armMotor.set(1.0);
 	}
-	public void shooterArmStop(){
+	public void shooterArmStop(){ //Shooter arm stop
 		armMotor.set(0.0);
 	}
 }
