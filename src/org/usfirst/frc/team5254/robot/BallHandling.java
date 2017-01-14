@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5254.robot;
 import org.usfirst.frc.team5254.robot.OperatorControls;
+import org.usfirst.frc.team5254.robot.DriverControls;
 
 import edu.wpi.first.wpilibj.Timer;
 
@@ -27,6 +28,7 @@ public class BallHandling extends Pathfinder {
 			state = ShooterState.IDLE;
 			shotTimer.start();
 			armTimer.start();
+			System.out.println(state);
 		}
 		
 		public void ballHandling() {

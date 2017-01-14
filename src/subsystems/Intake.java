@@ -32,6 +32,7 @@ public class Intake{
 
 	//sets intake motor to full speed in
 	public void intakeIn() {
+		System.out.println("IntakeIn");
 		intakeMotor.set(1);
 	}
 	
