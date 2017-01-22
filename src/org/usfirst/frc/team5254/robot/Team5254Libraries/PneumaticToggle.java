@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.Solenoid;
  */
 
 public class PneumaticToggle {
-	DoubleSolenoid.Value lastValue = DoubleSolenoid.Value.kReverse;
-	boolean lastInput;
+
+	boolean lastValue;
 	DoubleSolenoid doubleSolenoid;
 	Solenoid solenoid;
 
@@ -33,19 +33,15 @@ public class PneumaticToggle {
 	 *            the object of the double solenoid you'd like to toggle
 	 */
 	public void DoubleToggle(boolean input) {
-		if (lastInput == input)
-			return;
-		lastInput = input;
-		if (!input)
-			return;
-		DoubleSolenoid.Value value;
-		if (lastValue == DoubleSolenoid.Value.kForward) {
-			value = DoubleSolenoid.Value.kReverse;
-		} else {
-			value = DoubleSolenoid.Value.kForward;
+
+		if (!lastValue && input && DoubleSolenoid.Value.kForward == doubleSolenoid.get()) {
+			doubleSolenoid.set(DoubleSolenoid.Value.kReverse);
 		}
-		doubleSolenoid.set(value);
-		lastValue = value;
+		if (!lastValue && input && DoubleSolenoid.Value.kReverse == doubleSolenoid.get()) {
+			doubleSolenoid.set(DoubleSolenoid.Value.kForward);
+		}
+
+		lastValue = input;
 	}
 
 	/**
@@ -57,14 +53,14 @@ public class PneumaticToggle {
 	 */
 	public void SingleToggle(boolean input) {
 
-		if (!lastInput && input && solenoid.get()) {
+		if (!lastValue && input && solenoid.get()) {
 			solenoid.set(false);
 		}
-		if (!lastInput && input && !solenoid.get()) {
+		if (!lastValue && input && !solenoid.get()) {
 			solenoid.set(true);
 		}
 
-		lastInput = input;
+		lastValue = input;
 	}
 
 	/**

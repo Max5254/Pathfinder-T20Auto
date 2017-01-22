@@ -3,7 +3,7 @@ package org.usfirst.frc.team5254.robot.Team5254Libraries;
 import edu.wpi.first.wpilibj.Joystick;
 
 /**
- * Max's epic utility for taking data from xBox360 controllers 
+ * Max's utility for taking data from xBox360 controllers 
  * 
  * @author Max Westwater
  * @version 1.0

@@ -1,6 +1,9 @@
 package org.usfirst.frc.team5254.robot;
 
 import subsystems.Shooter;
+
+import org.usfirst.frc.team5254.auto.AutoModes;
+
 import subsystems.Drivetrain;
 import subsystems.Intake;
 import subsystems.Tomahawk;
@@ -11,7 +14,6 @@ public class Pathfinder {
 
 	}
 	
-
 	// Subsystems
 	protected static Drivetrain drivetrain = new Drivetrain(); // Done
 	protected static Intake intake = new Intake(); // Done
@@ -21,4 +23,8 @@ public class Pathfinder {
 	// Human Controls
 	protected static DriverControls driver = new DriverControls(); // Done
 	protected static OperatorControls operator = new OperatorControls(); // Done
+	
+	//Auto 
+	protected static AutoModes autoModes = new AutoModes();
+
 }
